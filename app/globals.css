@@ -13,7 +13,7 @@
   --terminal-blue: #0099FF;
   --terminal-border: #1a1f2e;
   --terminal-text: #e0e0e0;
-  
+
   /* Standard theme colors for fallback */
   --background: #0D1117;
   --foreground: #39FF14;
@@ -86,7 +86,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
+  /* --font-sans: 'Geist', 'Geist Fallback'; */
+  --font-sans: 'Nunito Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -130,6 +131,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -161,11 +163,11 @@
     color: #0099FF;
   }
 
-  .neon-glow {
+  /* .neon-glow {
     text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
-  }
+  } */
 
-  .neon-glow-green {
+  /* .neon-glow-green {
     color: #39FF14;
     text-shadow: 0 0 10px #39FF14, 0 0 20px #39FF14;
   }
@@ -178,6 +180,18 @@
   .neon-glow-yellow {
     color: #FFFF00;
     text-shadow: 0 0 10px #FFFF00, 0 0 20px #FFFF00;
+  } */
+
+  .neon-glow-green {
+    color: #39FF14;
+  }
+
+  .neon-glow-cyan {
+    color: #00FFFF;
+  }
+
+  .neon-glow-yellow {
+    color: #FFFF00;
   }
 
   .terminal-border {
@@ -191,10 +205,14 @@
 
 /* Keyframe animations */
 @keyframes blink {
-  0%, 49% {
+
+  0%,
+  49% {
     opacity: 1;
   }
-  50%, 100% {
+
+  50%,
+  100% {
     opacity: 0;
   }
 }
@@ -203,6 +221,7 @@
   from {
     width: 0;
   }
+
   to {
     width: 100%;
   }
@@ -213,22 +232,27 @@
     clip-path: inset(40% 0 61% 0);
     transform: translate(0);
   }
+
   20% {
     clip-path: inset(92% 0 1% 0);
     transform: translate(-2px, 2px);
   }
+
   40% {
     clip-path: inset(43% 0 1% 0);
     transform: translate(-2px, -2px);
   }
+
   60% {
     clip-path: inset(25% 0 58% 0);
     transform: translate(2px, -2px);
   }
+
   80% {
     clip-path: inset(54% 0 7% 0);
     transform: translate(2px, 2px);
   }
+
   100% {
     clip-path: inset(58% 0 43% 0);
     transform: translate(0);
@@ -240,12 +264,15 @@
     transform: translateY(-100%);
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   90% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(100vh);
     opacity: 0;
@@ -256,6 +283,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -290,11 +318,76 @@
     background: #00FFFF;
   }
 }
+@keyframes float-down-slow {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes float-down-slower {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.4;
+  }
+  85% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  .animate-float-down-slow {
+    animation: float-down-slow 15s linear infinite;
+  }
+
+  .animate-float-down-slower {
+    animation: float-down-slower 20s linear infinite;
+  }
+
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  .delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .delay-700 {
+    animation-delay: 0.7s;
+  }
+
+  .delay-1000 {
+    animation-delay: 1s;
+  }
+
+  .delay-1500 {
+    animation-delay: 1.5s;
+  }
+}
+
 @keyframes slide-up {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -314,5 +407,34 @@
 
   .scrollbar-hidden::-webkit-scrollbar {
     display: none;
+  }
+}
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes grid-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 30px 30px;
+  }
+}
+
+@layer utilities {
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  
+  .animate-grid-move {
+    animation: grid-move 20s linear infinite;
   }
 }

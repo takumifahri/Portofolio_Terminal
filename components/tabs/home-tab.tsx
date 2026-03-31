@@ -69,10 +69,10 @@ export default function HomeTab({
           <div className="bg-[#1a1f2e] border-l-4 border-[#39FF14] p-2.5 sm:p-3 lg:p-4 rounded">
             <div className="terminal-cyan font-mono text-[9px] xs:text-[10px] sm:text-xs lg:text-sm mb-0.5 sm:mb-1">$ whoami</div>
             <div className="text-[#39FF14] font-mono font-bold text-xs sm:text-base lg:text-lg leading-tight">
-              Backend Developer & System Design Enthusiast
+              Software Engineering Student | Backend Developer | System Design Enthusiast
             </div>
             <div className="text-[#00FFFF] font-mono text-[9px] xs:text-[10px] sm:text-xs lg:text-sm mt-1 sm:mt-1.5">
-              Jakarta Timur, Indonesia | IPB University
+              Jakarta, Indonesia | IPB University
             </div>
           </div>
 

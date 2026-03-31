@@ -34,7 +34,7 @@ export default function TerminalTabs({
             key={tab.id}
             className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-3 border-r border-[#1a1f2e] cursor-pointer transition-all group relative whitespace-nowrap text-xs sm:text-sm ${isActive
                 ? 'bg-[#1a1f2e] text-[#39FF14] neon-glow-green shadow-lg shadow-[#39FF14]/30'
-                : 'text-[#666666] hover:text-[#00FFFF] hover:bg-[#0D1117]/50'
+                : 'text-[#666666] hover:text-[#00FFFF] hover:bg-[#0D1117]/50 justify-center'
               }`}
             onClick={() => onTabSwitch(tab.id)}
           >
@@ -42,19 +42,23 @@ export default function TerminalTabs({
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#39FF14] to-transparent"></div>
             )}
 
-            <span className={`hidden sm:inline text-lg transition-all ${isActive ? 'text-[#39FF14]' : 'text-[#666666] group-hover:text-[#00FFFF]'}`}>
+            <span className={`text-lg transition-all ${isActive ? 'text-[#39FF14]' : 'text-[#666666] group-hover:text-[#00FFFF]'}`}>
               [{tab.icon}]
             </span>
-            <span className="font-mono">{tab.label}</span>
+
+            {/* Label - ALWAYS VISIBLE WHEN ACTIVE */}
+            {isActive && (
+              <span className="font-mono opacity-100">{tab.label}</span>
+            )}
 
             {/* Close button - jangan tampilkan untuk home tab */}
-            {tab.id !== 'home' && (
+            {tab.id !== 'home' && isActive && (
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   onTabClose(tab.id);
                 }}
-                className="ml-0.5 sm:ml-1 text-[#666666] hover:text-[#FF3366] text-xs sm:text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity"
+                className="ml-0.5 sm:ml-1 text-[#666666] hover:text-[#FF3366] text-xs sm:text-sm font-bold"
                 aria-label={`Close ${tab.label} tab`}
               >
                 ✕

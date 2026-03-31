@@ -86,7 +86,6 @@ export default function AboutTab() {
           >
             <Download size={16} />
             <span className="hidden lg:block xs:inline">Download</span>
-            <span className="xs:block lg:hidden">DL</span>
           </a>
         </div>
       </div>
